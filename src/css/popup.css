@@ -78,9 +78,6 @@ p {
 .clearfix::after {
   content: 'I am hidden'
 }
-#copy-btn-block {
-  margin: 0;
-}
 
 .uploader {
   display: block;

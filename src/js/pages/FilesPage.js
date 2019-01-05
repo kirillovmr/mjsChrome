@@ -6,7 +6,7 @@ export default class FilesPage extends Component {
   render() {
     return(
       <div>
-        <p class="lead">No Plugins <b>Just Javascript</b></p>
+        <p className="lead">No Plugins <b>Just Javascript</b></p>
         <Links
           leftText={'Your links:'}
           rightText={'Back to main page'}
