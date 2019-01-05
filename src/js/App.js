@@ -34,7 +34,7 @@ export default class App extends Component {
         return <FilesPage links={this.state.links} changePage={this.changePage.bind(this)} />
       case 'main':
       default:
-        return <MainPage links={this.state.links} changePage={this.changePage.bind(this)} appendLink={this.appendLink.bind(this)} />
+        return <MainPage links={this.state.links.slice(0, 3)} changePage={this.changePage.bind(this)} appendLink={this.appendLink.bind(this)} />
     }
   }
 
