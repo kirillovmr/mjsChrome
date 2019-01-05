@@ -1,5 +1,7 @@
 {
-  "name": "Chrome Extension Webpack",
+  "name": "MJS Cloud Storage",
+  "description": "Unlimited & Free Cloud Storage",
+  "permissions": ["storage"],
   "options_page": "options.html",
   "background": {
     "page": "background.html"

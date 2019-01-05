@@ -1,0 +1,423 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+html, body, * {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+html, body {
+  /* height: 100%; */
+  text-align: center;
+  width: 400px;
+  margin: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+body {
+  padding: 1rem;
+  background: #f8f8f8;
+}
+h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 26px;
+  line-height: 1;
+  color: #454cad;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+p {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: #5f6982;
+  margin-top: 0;
+}
+.hidden {
+  display: none;
+}
+.error {
+  color: crimson !important;
+}
+.text-title-sm {
+  display: inline;
+  margin: 0 0 5px 10px; 
+  text-align: left; 
+  font-size: .9em;
+  float: left;
+}
+.right {
+  display: inline;
+  float: right;
+}
+.bottom-text {
+  margin: 0;
+  font-size: .7em;
+}
+.bottom-text span {
+  font-size: .9em;
+}
+.text-btn {
+  margin-right: 10px;
+  border-radius: 3px;
+  color: #454cad;
+  cursor: pointer;
+}
+.text-btn:hover {
+  color: #2e348a;
+  text-decoration: underline;
+}
+.text-btn:active {
+  transform: scale(0.96, 0.96);
+}
+.clearfix {
+  visibility: hidden;
+  margin: 0;
+}
+.clearfix::after {
+  content: 'I am hidden'
+}
+#copy-btn-block {
+  margin: 0;
+}
+
+.uploader {
+  display: block;
+  clear: both;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+  /* height: 230px; */
+}
+.uploader label {
+  float: left;
+  clear: both;
+  width: 100%;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  background: #fff;
+  border-radius: 7px;
+  border: 3px solid #eee;
+  transition: all .2s ease;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.uploader label:hover {
+  border-color: #454cad;
+}
+.uploader label.hover {
+  border: 3px solid #454cad;
+  box-shadow: inset 0 0 0 6px #eee;
+}
+.uploader label.hover #start i.fa {
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  opacity: 0.3;
+}
+.uploader #start {
+  float: left;
+  clear: both;
+  width: 100%;
+}
+.uploader #start.hidden {
+  display: none;
+}
+.uploader #start i.fa {
+  font-size: 50px;
+  margin-bottom: 1rem;
+  transition: all .2s ease-in-out;
+}
+.uploader #response {
+  float: left;
+  clear: both;
+  width: 100%;
+}
+.uploader #response.hidden {
+  display: none;
+}
+.uploader #response #messages {
+  margin-bottom: .5rem;
+}
+.uploader #file-image {
+  display: inline;
+  margin: 0 auto .5rem auto;
+  width: auto;
+  height: auto;
+  max-width: 100px;
+  max-height: 150px;
+}
+.uploader #file-image.hidden {
+  display: none;
+}
+.uploader #notimage {
+  display: block;
+  float: left;
+  clear: both;
+  width: 100%;
+}
+.uploader #notimage.hidden {
+  display: none;
+}
+.uploader progress,
+.uploader .progress {
+  display: inline;
+  clear: both;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 180px;
+  height: 8px;
+  border: 0;
+  border-radius: 4px;
+  background-color: #eee;
+  overflow: hidden;
+  transition: all 500ms ease;
+}
+.uploader .progress[value]::-webkit-progress-bar {
+  border-radius: 4px;
+  background-color: #eee;
+}
+.uploader .progress[value]::-webkit-progress-value {
+  background: linear-gradient(to right, #393f90 0%, #454cad 50%);
+  border-radius: 4px;
+}
+.uploader .progress[value]::-moz-progress-bar {
+  background: linear-gradient(to right, #393f90 0%, #454cad 50%);
+  border-radius: 4px;
+}
+
+.progress-done[value]::-webkit-progress-bar {
+  background-color: #eee !important;
+}
+.progress-done[value]::-webkit-progress-value {
+  background: linear-gradient(to right, #6ea515 0%, #8cce1e 50%) !important;
+}
+.progress-done[value]::-moz-progress-bar {
+  background: linear-gradient(to right, #6ea515 0%, #8cce1e 50%) !important;
+}
+
+.uploader input[type="file"] {
+  display: none;
+}
+.uploader div {
+  margin: 0 0 .5rem 0;
+  color: #5f6982;
+}
+.uploader .btn {
+  display: inline-block;
+  margin: .5rem .5rem 1rem .5rem;
+  clear: both;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: initial;
+  border: none;
+  border-radius: .2rem;
+  outline: none;
+  padding: 0 1rem;
+  height: 36px;
+  line-height: 36px;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+  background: #454cad;
+  border-color: #454cad;
+  cursor: pointer;
+}
+
+/* 
+  Copy Button
+*/
+
+@keyframes button-dot-intro {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(0.75, 0.75);
+  }
+}
+
+@keyframes button-ready {
+  0% {
+    margin-left: 1.25rem;
+    width: 2.5rem;
+  }
+  10% {
+    background-color: #5585ff;
+    border-color: #5585ff;
+  }
+  70% {
+    margin: 0;
+    width: 7.25rem;
+    background-color: #fff;
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    margin: 0;
+    width: 7rem;
+    border-color: #8cce1e;
+    background-color: #fff;
+  }
+}
+@keyframes button-dot-outro {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1, 1);
+  }
+}
+@keyframes button-ready-label {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.button {
+  position: relative;
+  overflow: hidden;
+  width: 7rem;
+  color: #5585ff;
+  border: 2px solid #5585ff;
+  background-color: transparent;
+  cursor: pointer;
+  line-height: 2;
+  margin: 0;
+  padding: 0;
+  border-radius: 7px;
+  font-size: 1.125rem;
+  outline: none;
+  /* transition: transform .125s; */
+}
+.button:active {
+  transform: scale(0.9, 0.9);
+}
+.button:before, .button:after {
+  position: absolute;
+  opacity: 0;
+  border-radius: 50%;
+  background-color: #fff;
+  top: 50%;
+  left: 50%;
+  margin-top: -1.125rem;
+  margin-left: -1.125rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  content: '';
+  z-index: 1;
+}
+.button.ready {
+  text-indent: 0;
+  color: transparent;
+  /* background-color: #5585ff; */
+  animation: button-ready .666s forwards;
+}
+.button.ready:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: auto;
+  margin: 0;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background-color: transparent;
+  color: #8cce1e;
+  content: 'Copy link';
+  opacity: 0;
+  z-index: 2;
+  animation: button-ready-label .5s forwards .275s;
+}
+.button.ready.copied:before {
+  content: 'Copied';
+}
+.button.ready:after {
+  opacity: 1;
+  animation: button-dot-outro .333s;
+}
+
+/* 
+  Links
+*/
+.links {
+  text-align: left;
+  color: #5f6982;
+}
+.link {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  border-radius: 7px;
+  border: 3px solid #eee;
+  padding: 0 3px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all .15s ease;
+  -moz-user-select: none; 
+  -webkit-user-select: none; 
+  -ms-user-select:none; 
+  user-select:none;
+  -o-user-select:none;
+}
+.link:last-child {
+  margin-bottom: 0;
+}
+.link:hover {
+  border-color: #5f6982;
+}
+.link:active{
+  border-color: #8cce1e;
+  transform: scale(0.98, 0.98);
+}
+.link:active > .ext::after {
+  margin-left: 5px;
+  margin-right: -5px;
+  padding: 0 3px;
+  content: "Copied";
+  color: #fff;
+  background-color: #8cce1e;
+  border-radius: 3px;
+}
+.link-text {
+  margin-left: 4px;
+  display: inline;
+  word-break: break-word;
+  font-family: monospace;
+  font-size: .8em;
+}
+.ext {
+  position: absolute;
+  right: 2px;
+  top: 0;
+  margin: 0;
+  display: inline;
+  float: right;
+  font-size: .75em;
+  background: #eee;
+  padding: 0 5px;
+  margin-top: 2px;
+  border-radius: 5px;
+  transition: all .5s ease;
+  text-transform: uppercase;
+}
+
+/* 
+  Extensions
+*/
+.ext-js {
+  color: #fff;
+  background: #2193b0;  /* fallback for old browsers */
+}
