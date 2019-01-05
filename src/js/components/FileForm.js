@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import imageForExt from '../misc/ImageForExtension';
 import CopyButton from './CopyButton';
 
-import { saveToStorage, getFromStorage } from '../misc/Chrome';
+import { saveToStorage } from '../misc/Chrome';
 
 export default class FileForm extends Component {
   constructor(props) {
@@ -113,7 +113,7 @@ export default class FileForm extends Component {
       });
 
       saveToStorage(link);
-      // saveLink(link);
+      this.props.appendLink(link);
       // appendLink(link);
     })
     .catch(err => {

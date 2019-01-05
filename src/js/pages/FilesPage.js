@@ -11,6 +11,7 @@ export default class FilesPage extends Component {
           leftText={'Your links:'}
           rightText={'Back to main page'}
           rightTextClick={() => this.props.changePage('main')}
+          links={this.props.links}
         />
       </div>
     );

@@ -1,19 +1,34 @@
 import React, { Component } from 'react';
 
+import copyText from '../misc/CopyText';
+
 export default class Link extends Component {
+  getFilename(link) {
+    const split = link.split('/');
+    return split.pop();
+  }
+
+  getExtension(link) {
+    const split = link.split('.');
+    return split.pop();
+  }
+
   render() {
-    if (this.props.link)
+    if (this.props.link) {
+      const filename = this.getFilename(this.props.link);
+      const ext = this.getExtension(this.props.link);
       return (
-        <div class="link">
-          <div class="link-text">Short link name</div>
-          <p class="ext">ext</p> 
+        <div className="link" onClick={() => {copyText(this.props.link)}}>
+          <div className="link-text">{filename}</div>
+          <p className={`ext ext-${ext}`}>{ext}</p> 
         </div>
       );
-    else 
+    } else {
       return (
         <div className="link">
           <div className="link-text">🚀 Upload your first file and enjoy! 😎</div>
         </div>
       );
+    }
   }
 }

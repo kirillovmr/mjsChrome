@@ -24,13 +24,17 @@ export default class App extends Component {
     })
   }
 
+  appendLink(link) {
+    this.setState({links: [link, ...this.state.links]});
+  }
+
   definePage(pageName) {
     switch (pageName) {
       case 'files':
-        return <FilesPage links={this.state.links} changePage={this.changePage.bind(this)}/>
+        return <FilesPage links={this.state.links} changePage={this.changePage.bind(this)} />
       case 'main':
       default:
-        return <MainPage links={this.state.links} changePage={this.changePage.bind(this)}/>
+        return <MainPage links={this.state.links} changePage={this.changePage.bind(this)} appendLink={this.appendLink.bind(this)} />
     }
   }
 
