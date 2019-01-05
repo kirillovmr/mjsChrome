@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import imageForExt from '../misc/ImageForExtension';
 import CopyButton from './CopyButton';
 
+import { saveToStorage, getFromStorage } from '../misc/Chrome';
+
 export default class FileForm extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,7 @@ export default class FileForm extends Component {
 
   fileSelectHandler(e) {
     // Turning back all UI changes
-    // resetUIChanges();
+    this.setState({loading: 0});
 
     // Fetch FileList object
     var files = e.target.files || e.dataTransfer.files;
@@ -110,6 +112,7 @@ export default class FileForm extends Component {
         result: link
       });
 
+      saveToStorage(link);
       // saveLink(link);
       // appendLink(link);
     })

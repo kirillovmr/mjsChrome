@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import MainPage from './pages/MainPage';
 import FilesPage from './pages/FilesPage';
 
+import { getFromStorage, resetStorage } from './misc/Chrome';
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -12,27 +14,28 @@ export default class App extends Component {
     }
   }
 
+  componentDidMount() {
+    getFromStorage()
+    .then(links => {
+      this.setState({links: links});
+    })
+    .catch(err => {
+      console.warn('[App]: Cant get links from local');
+    })
+  }
+
   definePage(pageName) {
     switch (pageName) {
       case 'files':
-        return <FilesPage changePage={this.changePage.bind(this)}/>
+        return <FilesPage links={this.state.links} changePage={this.changePage.bind(this)}/>
       case 'main':
       default:
-        return <MainPage changePage={this.changePage.bind(this)}/>
+        return <MainPage links={this.state.links} changePage={this.changePage.bind(this)}/>
     }
   }
 
   changePage(pageName) {
     this.setState({pageName});
-  }
-
-  resetLinks() {
-    if (confirm('This will delete all your stored links. Are you sure?')) {
-      chrome.storage.sync.set({links: []}, function() {
-        // removeLinksFormDom();
-        // log('All links were deleted');
-      });
-    }
   }
 
   render() {
@@ -44,7 +47,7 @@ export default class App extends Component {
         {this.definePage(this.state.pageName)}
 
         <div className="clearfix"></div>
-        <p className="bottom-text">&copy; 2019 Morejust.store | <span onClick={() => this.resetLinks()} className="text-btn">Reset</span></p>
+        <p className="bottom-text">&copy; 2019 Morejust.store | <span onClick={() => resetStorage()} className="text-btn">Reset</span></p>
       </div>
     )
   }
