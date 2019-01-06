@@ -42,6 +42,11 @@ export default class App extends Component {
     this.setState({pageName});
   }
 
+  resetClicked() {
+    resetStorage();
+    this.setState({links: []});
+  }
+
   render() {
     return (
       <div>
@@ -51,7 +56,9 @@ export default class App extends Component {
         {this.definePage(this.state.pageName)}
 
         <div className="clearfix"></div>
-        <p className="bottom-text">&copy; 2019 Morejust.store | <span onClick={() => resetStorage()} className="text-btn">Reset</span></p>
+        <p className="bottom-text">
+          &copy; 2019 <a className="just-color" href="https://morejust.store" target="blank">Morejust.store</a> | <span onClick={() => this.resetClicked()} className="text-btn">Reset</span>
+        </p>
       </div>
     )
   }

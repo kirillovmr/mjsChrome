@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid/v1';
 
 import Link from './Link';
 
@@ -12,7 +13,7 @@ export default class Links extends Component {
     }
 
     return links.map(link => {
-      return <Link link={link} />
+      return <Link link={link} key={uuid()} />
     });
   }
 

@@ -39,7 +39,13 @@ export function getFromStorage() {
   return new Promise((resolve, reject) => {
     if (chrome.storage) {
       chrome.storage.sync.get(['links'], function(result) {
-        resolve(result['links']);
+        if(result['links']) {
+          resolve(result['links']);
+        } else {
+          resolve([]);
+        }
+        // var bkg = chrome.extension.getBackgroundPage();
+        // bkg.console.log('GFS:', result['links']);
       });
     } else {
       const msg = 'I should be runned inside google extension to get links from storage';
