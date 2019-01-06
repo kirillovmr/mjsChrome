@@ -84,8 +84,8 @@ export default class FileForm extends Component {
     }, 100);
 
     var formData = new FormData(document.getElementById('file-upload-form')),
-        // API_ROOT = "https://morejust.herokuapp.com",
-        API_ROOT = "http://localhost:4000",
+        API_ROOT = "https://morejust.herokuapp.com",
+        // API_ROOT = "http://localhost:4000",
         myHeaders = new Headers({
           "Access-Control-Allow-Origin": "*",
         });
