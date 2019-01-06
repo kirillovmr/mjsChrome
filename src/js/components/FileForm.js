@@ -24,7 +24,7 @@ export default class FileForm extends Component {
 
   fileSelectHandler(e) {
     // Turning back all UI changes
-    this.setState({loading: 0});
+    this.setState({uploading: false, loading: 0, error: false, errorMsg: ''});
 
     // Fetch FileList object
     var files = e.target.files || e.dataTransfer.files;
@@ -34,21 +34,22 @@ export default class FileForm extends Component {
 
     // Process all File objects
     for (var i = 0, f; f = files[i]; i++) {
-      const parse = this.parseFile(f);
-      if(parse.canUpload) {
+      const error = this.parseFile(f);
+      if(!error) {
         this.uploadFile(f);
       } else {
-        this.error(parse.msg);
+        this.error(error.msg);
+        this.refs.form.reset();
       }
     }
   }
 
   parseFile(file) {
-    if(file.size / 1000000 >= this.maxFileSizeMB)
+    if(file.size / 1000000 >= this.maxFileSizeMB) {
       return {
-        canUpload: false,
-        msg: `Please upload file less than ${mbLimit} mb`
+        msg: `Please upload file less than ${this.maxFileSizeMB} mb`
       };
+    }
     
     var imageName = file.name;
     const extension = file.name.split('.').pop();
@@ -65,11 +66,7 @@ export default class FileForm extends Component {
 
     this.setState({ // Setting thumbnail
       thumbnail: isImage ? URL.createObjectURL(file) : imageForExt(extension)
-    })
-    
-    return {
-      canUpload: true
-    }
+    });
   }
 
   uploadFile(file) {
@@ -93,10 +90,10 @@ export default class FileForm extends Component {
           "Access-Control-Allow-Origin": "*",
         });
 
-    fetch(`${API_ROOT}/upload`, { // Your POST endpoint
+    fetch(`${API_ROOT}/upload`, {
       method: 'POST',
       headers: myHeaders,
-      body: formData // This is your file object
+      body: formData
     })
     .then(response => {
       return response.json();
@@ -107,17 +104,23 @@ export default class FileForm extends Component {
 
       clearInterval(this.loadingInterval);
       this.setState({
-        loading: 100, 
+        loading: 100,
         outputMsg: this.urlName(link),
         result: link
       });
 
       saveToStorage(link);
       this.props.appendLink(link);
-      // appendLink(link);
     })
     .catch(err => {
-      console.error(err);
+      console.error('Error on upload:', err);
+      clearInterval(this.loadingInterval);
+      this.setState({
+        uploading: false,
+        error: true,
+        errorMsg: 'Connection error. Failed to upload',
+      });
+
     });
   }
 
@@ -137,7 +140,8 @@ export default class FileForm extends Component {
   render() {
     return (
       <div>
-        <form id="file-upload-form" className="uploader">
+        <span className="small-text">Loading will be interrupted if you close this window</span>
+        <form ref="form" id="file-upload-form" className="uploader">
           <input id="file-upload" onChange={this.fileSelectHandler.bind(this)} type="file" name="somefiles" />
 
           <label htmlFor="file-upload" id="file-drag">
@@ -150,7 +154,7 @@ export default class FileForm extends Component {
             </div>
             <div className={this.state.uploading ? "" : "hidden"}>
               <div><strong>{this.state.outputMsg}</strong></div>
-              <progress className={`progress ${this.state.loading === 100 ? "progress-done" : ""}`} value={this.state.loading} max="100">
+              <progress className={`progress ${this.state.loading === 100 ? "progress-done" : ""} ${this.state.error ? "progress-error" : ""}`} value={this.state.loading} max="100">
                 <span>0</span>%
               </progress>
               {this.state.loading === 100 ? this.renderCopyBtn() : null}

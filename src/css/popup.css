@@ -44,6 +44,10 @@ p {
   color: #5f6982;
   margin-top: 0;
 }
+.small-text {
+  font-size: x-small;
+  color: #5f6982;
+}
 .hidden {
   display: none;
 }
@@ -60,6 +64,7 @@ p {
 .right {
   display: inline;
   float: right;
+  margin-right: 10px;
 }
 .bottom-text {
   margin: 0;
@@ -69,7 +74,6 @@ p {
   font-size: .9em;
 }
 .text-btn {
-  margin-right: 10px;
   border-radius: 3px;
   color: #454cad;
   cursor: pointer;
@@ -203,6 +207,16 @@ p {
 }
 .progress-done[value]::-moz-progress-bar {
   background: linear-gradient(to right, #6ea515 0%, #8cce1e 50%) !important;
+}
+
+.progress-error[value]::-webkit-progress-bar {
+  background-color: #eee !important;
+}
+.progress-error[value]::-webkit-progress-value {
+  background: linear-gradient(to right, #cb2d3e 0%, #ef473a 50%) !important;
+}
+.progress-error[value]::-moz-progress-bar {
+  background: linear-gradient(to right, #cb2d3e 0%, #ef473a 50%) !important;
 }
 
 .uploader input[type="file"] {
@@ -424,7 +438,31 @@ p {
 /* 
   Extensions
 */
-.ext-js {
+.e-doc, .e-docx, .e-jpg, .e-jpeg, .e-xml, .e-xmlx .e-mp3, .e-psd, .e-cad, .e-mov, .e-iso {
   color: #fff;
-  background: #2193b0;  /* fallback for old browsers */
+  background: #2193b0;
+}
+.e-pdf, .e-ppt, .e-sql .e-avi, .e-aac, .e-fla {
+  color: #fff;
+  background: #ef473a;
+}
+.e-xls, .e-html .e-bmp .e-cdr .e-wmv .e-dat .e-3ds {
+  color: #fff;
+  background: #56ab2f;
+}
+.e-png, .e-gif, .e-tif, .e-tiff, .e-midi, .e-indd {
+  color: #fff;
+  background: #734b6d;
+}
+.e-ai, .e-svg, .e-eps, .e-mpg, .e-flv, .e-ps, .e-psd {
+  color: #fff;
+  background: #f8b500;
+}
+.e-txt, .e-js, .e-php, .e-css, .e-raw, .e-dll, .e-dmg {
+  color: #fff;
+  background: #434343;
+}
+.e-rar, .e-zip, .e-7z {
+  color: #fff;
+  background: #5584af;
 }

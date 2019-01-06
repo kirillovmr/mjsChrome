@@ -20,7 +20,7 @@ export default class Link extends Component {
       return (
         <div className="link" onClick={() => {copyText(this.props.link)}}>
           <div className="link-text">{filename}</div>
-          <p className={`ext ext-${ext}`}>{ext}</p> 
+          <p className={`ext e-${ext}`}>{ext}</p> 
         </div>
       );
     } else {

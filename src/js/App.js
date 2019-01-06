@@ -15,6 +15,11 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+
+    // TODO
+    // Connect to server to get settings
+    // and pass them to components
+
     getFromStorage()
     .then(links => {
       this.setState({links: links});
