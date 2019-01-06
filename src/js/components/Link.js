@@ -26,7 +26,9 @@ export default class Link extends Component {
     } else {
       return (
         <div className="link">
-          <div className="link-text"><span className="emoji">🚀</span> Upload your first file and enjoy! <span className="emoji">😎</span></div>
+          <div className="link-text" style={{display: 'block', textAlign: 'center'}}>
+            <span className="emoji">🚀</span> Upload your first file and enjoy! <span className="emoji">😎</span>
+          </div>
         </div>
       );
     }

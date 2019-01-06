@@ -23,6 +23,7 @@ export default class FileForm extends Component {
   }
 
   fileSelectHandler(e) {
+    e.preventDefault();
     // Turning back all UI changes
     this.setState({uploading: false, loading: 0, error: false, errorMsg: '', result: ''});
 
@@ -30,7 +31,7 @@ export default class FileForm extends Component {
     var files = e.target.files || e.dataTransfer.files;
 
     // Cancel event and hover styling
-    // fileDragHover(e);
+    this.fileDragHover(e);
 
     // Process all File objects
     for (var i = 0, f; f = files[i]; i++) {
@@ -83,12 +84,14 @@ export default class FileForm extends Component {
       this.setState({loading: this.state.loading += valueToAdd});
     }, 100);
 
-    var formData = new FormData(document.getElementById('file-upload-form')),
-        // API_ROOT = "https://morejust.herokuapp.com",
-        API_ROOT = "http://localhost:4000",
+    var formData = new FormData(),
+        API_ROOT = "https://morejust.herokuapp.com",
+        // API_ROOT = "http://localhost:4000",
         myHeaders = new Headers({
           "Access-Control-Allow-Origin": "*",
         });
+
+    formData.append('somefiles', file);
 
     fetch(`${API_ROOT}/upload`, {
       method: 'POST',
@@ -124,6 +127,17 @@ export default class FileForm extends Component {
     });
   }
 
+  fileDragHover(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.refs.fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
+  }
+
+  drop(e) {
+    e.preventDefault();
+    console.log(e.dataTransfer.files);
+  }
+
   error(msg) {
     this.setState({error: true, errorMsg: msg});
   }
@@ -149,7 +163,7 @@ export default class FileForm extends Component {
         <form ref="form" id="file-upload-form" className="uploader">
           <input id="file-upload" onChange={this.fileSelectHandler.bind(this)} type="file" name="somefiles" />
 
-          <label htmlFor="file-upload" id="file-drag">
+          <label htmlFor="file-upload" id="file-drag" ref="fileDrag" onDragOver={this.fileDragHover.bind(this)} onDragLeave={this.fileDragHover.bind(this)} onDrop={this.fileSelectHandler.bind(this)}>
             <img id="file-image" src={this.state.thumbnail} alt="Preview" className={this.state.uploading ? "" : "hidden"} />
             <div id="start" className={this.state.uploading ? "hidden" : ""}>
               <i className="fa fa-download" aria-hidden="true"></i>

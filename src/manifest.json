@@ -1,6 +1,6 @@
 {
-  "name": "MJS Cloud Storage",
-  "description": "Unlimited & Free Cloud Storage",
+  "name": "MJS: Free Unlimited Cloud Storage",
+  "description": "Store all your files easy just with one click. Reliable Cloud Storage based on GitHub Services. Open Sourse",
   "permissions": ["storage"],
   "options_page": "options.html",
   "background": {
