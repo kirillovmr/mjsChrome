@@ -42,14 +42,14 @@ p {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   color: #5f6982;
-  margin-top: 0;
+  margin: 0;
 }
 .small-text {
   font-size: x-small;
   color: #5f6982;
 }
 .hidden {
-  display: none;
+  display: none !important;
 }
 .error {
   color: crimson !important;
@@ -87,7 +87,7 @@ p {
 }
 .clearfix {
   visibility: hidden;
-  margin: 0;
+  margin: 0 !important;
 }
 .clearfix::after {
   content: 'I am hidden'
@@ -109,7 +109,7 @@ p {
   text-align: center;
   background: #fff;
   border-radius: 7px;
-  border: 3px solid #eee;
+  border: 2px solid #eee;
   transition: all .2s ease;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -223,7 +223,8 @@ p {
   display: none;
 }
 .uploader div {
-  margin: 0 0 .5rem 0;
+  /* margin: 0 0 .5rem 0; */
+  margin: 0;
   color: #5f6982;
 }
 .uploader .btn {
@@ -247,6 +248,18 @@ p {
   background: #454cad;
   border-color: #454cad;
   cursor: pointer;
+}
+.output-link {
+  font-size: 1em;
+  font-family: monospace;
+  font-variant: all-petite-caps;
+  color: #000;
+}
+.text-upload-more {
+  position: relative;
+  top: 20px;
+  font-size: .9em;
+  color: #454cad;
 }
 
 /* 
@@ -311,10 +324,10 @@ p {
   overflow: hidden;
   width: 7rem;
   color: #5585ff;
-  border: 2px solid #5585ff;
+  border: 1px solid #5585ff;
   background-color: transparent;
   cursor: pointer;
-  line-height: 2;
+  line-height: 1.7;
   margin: 0;
   padding: 0;
   border-radius: 7px;
@@ -381,7 +394,7 @@ p {
   width: 100%;
   background: #fff;
   border-radius: 7px;
-  border: 3px solid #eee;
+  border: 1px solid #eee;
   padding: 0 3px;
   margin-bottom: 5px;
   overflow: hidden;
@@ -405,12 +418,12 @@ p {
 }
 .link:active > .ext::after {
   margin-left: 5px;
-  margin-right: -5px;
+  margin-right: -6px;
   padding: 0 3px;
   content: "Copied";
-  color: #fff;
-  background-color: #8cce1e;
-  border-radius: 3px;
+  color: #8cce1e;
+  border: 1px solid #8cce1e;
+  border-radius: 5px;
 }
 .link-text {
   margin-left: 4px;
@@ -418,51 +431,59 @@ p {
   word-break: break-word;
   font-family: monospace;
   font-size: .8em;
+  position: relative;
+  top: -2px;
+}
+.link-text .emoji {
+  position: relative;
+  font-size: inherit;
+  top: 2px;
 }
 .ext {
   position: absolute;
   right: 2px;
-  top: 0;
+  top: -1px;
   margin: 0;
   display: inline;
   float: right;
   font-size: .75em;
-  background: #eee;
+  background: #fff;
   padding: 0 5px;
   margin-top: 2px;
   border-radius: 5px;
   transition: all .5s ease;
   text-transform: uppercase;
+  border: 1px solid #eee;
 }
 
 /* 
   Extensions
 */
 .e-doc, .e-docx, .e-jpg, .e-jpeg, .e-xml, .e-xmlx .e-mp3, .e-psd, .e-cad, .e-mov, .e-iso {
-  color: #fff;
-  background: #2193b0;
+  color: #2193b0;
+  border: 1px solid #2193b0;
 }
 .e-pdf, .e-ppt, .e-sql .e-avi, .e-aac, .e-fla {
-  color: #fff;
-  background: #ef473a;
+  color: #ef473a;
+  border: 1px solid #ef473a;
 }
 .e-xls, .e-html .e-bmp .e-cdr .e-wmv .e-dat .e-3ds {
-  color: #fff;
-  background: #56ab2f;
+  color: #56ab2f;
+  border: 1px solid #56ab2f;
 }
 .e-png, .e-gif, .e-tif, .e-tiff, .e-midi, .e-indd {
-  color: #fff;
-  background: #734b6d;
+  color: #734b6d;
+  border: 1px solid #734b6d;
 }
 .e-ai, .e-svg, .e-eps, .e-mpg, .e-flv, .e-ps, .e-psd {
-  color: #fff;
-  background: #f8b500;
+  color: #f8b500;
+  border: 1px solid #f8b500;
 }
 .e-txt, .e-js, .e-php, .e-css, .e-raw, .e-dll, .e-dmg {
-  color: #fff;
-  background: #434343;
+  color: #434343;
+  border: 1px solid #434343;
 }
 .e-rar, .e-zip, .e-7z {
-  color: #fff;
-  background: #5584af;
+  color: #5584af;
+  border: 1px solid #5584af;
 }

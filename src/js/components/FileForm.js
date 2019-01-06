@@ -24,7 +24,7 @@ export default class FileForm extends Component {
 
   fileSelectHandler(e) {
     // Turning back all UI changes
-    this.setState({uploading: false, loading: 0, error: false, errorMsg: ''});
+    this.setState({uploading: false, loading: 0, error: false, errorMsg: '', result: ''});
 
     // Fetch FileList object
     var files = e.target.files || e.dataTransfer.files;
@@ -84,8 +84,8 @@ export default class FileForm extends Component {
     }, 100);
 
     var formData = new FormData(document.getElementById('file-upload-form')),
-        API_ROOT = "https://morejust.herokuapp.com",
-        // API_ROOT = "http://localhost:4000",
+        // API_ROOT = "https://morejust.herokuapp.com",
+        API_ROOT = "http://localhost:4000",
         myHeaders = new Headers({
           "Access-Control-Allow-Origin": "*",
         });
@@ -137,6 +137,11 @@ export default class FileForm extends Component {
     return <CopyButton copy={this.state.result}/>
   }
 
+  linkClicked(e) {
+    e.preventDefault();
+    copyText(this.state.result);
+  }
+
   render() {
     return (
       <div>
@@ -153,11 +158,14 @@ export default class FileForm extends Component {
               <span className="btn btn-primary">Select a file</span>
             </div>
             <div className={this.state.uploading ? "" : "hidden"}>
-              <div><strong>{this.state.outputMsg}</strong></div>
-              <progress className={`progress ${this.state.loading === 100 ? "progress-done" : ""} ${this.state.error ? "progress-error" : ""}`} value={this.state.loading} max="100">
+              <div className={`output-block ${this.state.loading === 100 ? "progress-done" : ""}`}>
+                <p className="output-link">{this.state.outputMsg}</p>
+              </div>
+              <progress className={`progress ${this.state.loading === 100 ? "progress-done hidden" : ""} ${this.state.error ? "progress-error" : ""}`} value={this.state.loading} max="100">
                 <span>0</span>%
               </progress>
               {this.state.loading === 100 ? this.renderCopyBtn() : null}
+              <p className="text-upload-more text-btn">{this.state.loading === 100 ? "👉 Select other file to upload more 👈" : ""}</p>
             </div>
           </label>
         </form>

@@ -62,7 +62,7 @@ export default class App extends Component {
 
         <div className="clearfix"></div>
         <p className="bottom-text">
-          &copy; 2019 <a className="just-color" href="https://morejust.store" target="blank">Morejust.store</a> | <span onClick={() => this.resetClicked()} className="text-btn">Reset</span>
+          &copy; 2019 <a className="just-color" href="https://morejust.store" target="blank">Morejust.store</a> | <span className="text-btn">Terms of use</span> | <span onClick={() => this.resetClicked()} className="text-btn">Reset storage</span>
         </p>
       </div>
     )
