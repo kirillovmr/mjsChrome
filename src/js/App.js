@@ -63,8 +63,10 @@ export default class App extends Component {
   }
 
   resetClicked() {
-    resetStorage();
-    this.setState({links: []});
+    if (confirm('This will delete all your stored links. Are you sure?')) {
+      resetStorage();
+      this.setState({ links: [] });
+    }
   }
 
   renderFooter() {

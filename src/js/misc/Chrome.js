@@ -4,12 +4,10 @@ function notGoogle(msg) {
 
 export function resetStorage(cb) {
   if (chrome.storage) {
-    if (confirm('This will delete all your stored links. Are you sure?')) {
-      chrome.storage.sync.set({links: []}, function() {
-        cb ? cb() : null;
-        console.log('[resetStorage]: Storage was cleared');
-      });
-    }
+    chrome.storage.sync.set({links: []}, function() {
+      cb ? cb() : null;
+      console.log('[resetStorage]: Storage was cleared');
+    });
   } else {
     notGoogle('I should be runned inside google extension to reset storage');
   }

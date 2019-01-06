@@ -32,8 +32,12 @@ h2 {
   position: absolute;
   left: 12px;
   font-size: .7em;
-  padding: 5px 15px;
-  transition: opacity .3s ease;
+  padding: 5px 10px;
+  transition: opacity .2s ease;
+}
+.icon-back:hover {
+  transform: scale(.9, .9);
+  color: #262a61;
 }
 a {
   font-size: inherit;
