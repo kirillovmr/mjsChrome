@@ -133,11 +133,6 @@ export default class FileForm extends Component {
     this.refs.fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
   }
 
-  drop(e) {
-    e.preventDefault();
-    console.log(e.dataTransfer.files);
-  }
-
   error(msg) {
     this.setState({error: true, errorMsg: msg});
   }

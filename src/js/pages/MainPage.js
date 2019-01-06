@@ -15,6 +15,7 @@ export default class MainPage extends Component {
           rightText={'View all links'}
           rightTextClick={() => this.props.changePage('files')}
           links={this.props.links}
+          maxLinks={3}
         />
       </div>
     );

@@ -4,9 +4,14 @@ import uuid from 'uuid/v1';
 import Link from './Link';
 
 export default class Links extends Component {
+  constructor(props) {
+    super(props);
+    this.rightTextFunc = this.props.rightTextClick ? this.props.rightTextClick : ()=>console.log('RightBtnClicked');
+  }
 
-  renderLinks(amount = 100) {
-    const links = this.props.links || [];
+  renderLinks() {
+    let links = this.props.links || [];
+    links = this.props.maxLinks ? links.slice(0, this.props.maxLinks) : links;
 
     if (links.length === 0) {
       return <Link />
@@ -21,8 +26,8 @@ export default class Links extends Component {
     return (
       <div>
         <div id="recent-links-heading" className="">
-          <p className="text-title-sm">{this.props.leftText || 'leftText'}</p>
-          <p onClick={() => this.props.rightTextClick()} className="text-title-sm text-btn right">{this.props.rightText || 'rightText'}</p>
+          <p className="text-title-sm">{this.props.leftText || ''}</p>
+          <p onClick={() => this.rightTextFunc() || null} className="text-title-sm text-btn right">{this.props.rightText || ''}</p>
         </div>
 
         <div id="links" className="links">

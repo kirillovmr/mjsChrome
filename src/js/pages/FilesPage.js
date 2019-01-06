@@ -10,8 +10,6 @@ export default class FilesPage extends Component {
         <div className="clearfix"></div>
         <Links
           leftText={'Your links:'}
-          rightText={'Back to main page'}
-          rightTextClick={() => this.props.changePage('main')}
           links={this.props.links}
         />
       </div>

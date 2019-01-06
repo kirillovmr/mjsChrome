@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import MainPage from './pages/MainPage';
 import FilesPage from './pages/FilesPage';
+import TermsPage from './pages/TermsPage';
 
 import { getFromStorage, resetStorage } from './misc/Chrome';
 
@@ -10,6 +11,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       pageName: 'main',
+      prevPages: [],
       links: []
     }
   }
@@ -35,16 +37,29 @@ export default class App extends Component {
 
   definePage(pageName) {
     switch (pageName) {
+      case 'terms':
+        return <TermsPage changePage={this.changePage.bind(this)} />
       case 'files':
         return <FilesPage links={this.state.links} changePage={this.changePage.bind(this)} />
       case 'main':
       default:
-        return <MainPage links={this.state.links.slice(0, 3)} changePage={this.changePage.bind(this)} appendLink={this.appendLink.bind(this)} />
+        return <MainPage links={this.state.links} changePage={this.changePage.bind(this)} appendLink={this.appendLink.bind(this)} />
     }
   }
 
   changePage(pageName) {
-    this.setState({pageName});
+    this.setState({
+      pageName,
+      prevPages: [...this.state.prevPages, this.state.pageName]
+    });
+  }
+
+  goPageBack() {
+    const newPage = Array(...this.state.prevPages).pop();
+    this.setState({
+      pageName: newPage,
+      prevPages: this.state.prevPages.slice(0, this.state.prevPages.length - 1)
+    })
   }
 
   resetClicked() {
@@ -52,18 +67,28 @@ export default class App extends Component {
     this.setState({links: []});
   }
 
+  renderFooter() {
+    return (
+      <p className="bottom-text">
+        &copy; 2019 <a className="just-color" href="https://morejust.store" target="blank">Morejust.store</a> | <span className="text-btn" onClick={() => this.changePage('terms')}>Terms of use</span> | <span onClick={() => this.resetClicked()} className="text-btn">Reset storage</span>
+      </p>
+    );
+  }
+
   render() {
+    console.log('Render app', this.state.prevPages);
     return (
       <div>
-        <h2>MJS Cloud Storage</h2>
+        <h2>
+          <i onClick={this.state.prevPages.length > 0 ? () => this.goPageBack() : null} className={`fa fa-chevron-left icon-back ${this.state.prevPages.length === 0 ? 'invis':''}`}></i>
+          MJS Cloud Storage
+        </h2>
         <div className="clearfix"></div>
 
         {this.definePage(this.state.pageName)}
 
         <div className="clearfix"></div>
-        <p className="bottom-text">
-          &copy; 2019 <a className="just-color" href="https://morejust.store" target="blank">Morejust.store</a> | <span className="text-btn">Terms of use</span> | <span onClick={() => this.resetClicked()} className="text-btn">Reset storage</span>
-        </p>
+        {this.renderFooter()}
       </div>
     )
   }
