@@ -70,9 +70,22 @@ export default class App extends Component {
   }
 
   renderFooter() {
+    function terms() {
+      if (this.state.pageName !== 'terms') {
+        return (
+          <span className="wrap">
+            <span style={{fontSize: '1em'}} className="text-btn" onClick={() => this.changePage('terms')}>Terms of Use</span> |&nbsp;
+          </span>
+        );
+      }
+    }
+    terms = terms.bind(this);
     return (
       <p className="bottom-text">
-        &copy; 2019 <a className="just-color" href="https://morejust.store" target="blank">Morejust.store</a> | <span className="text-btn" onClick={() => this.changePage('terms')}>Terms of use</span> | <span onClick={() => this.resetClicked()} className="text-btn">Reset storage</span>
+        &copy; 2019&nbsp;
+        <a className="just-color" href="https://morejust.store" target="blank">Morejust.store</a> |&nbsp;
+        {terms()}
+        <span onClick={() => this.resetClicked()} className="text-btn">Clear Storage</span>
       </p>
     );
   }

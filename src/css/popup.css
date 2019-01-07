@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 html, body, * {
   box-sizing: border-box;
-  font-size: 16px;
+  /* font-size: 16px; */
 }
 
 html, body {
@@ -39,8 +39,15 @@ h2 {
   transform: scale(.9, .9);
   color: #262a61;
 }
+.wrap {
+  display: inline-block;
+  font-size: inherit;
+}
 a {
   font-size: inherit;
+}
+a:visited {
+  color: #454cad;
 }
 a:hover {
   text-decoration: underline;
@@ -57,7 +64,7 @@ p {
 }
 .small-text {
   font-size: x-small;
-  color: #5f6982;
+  color: #afb5c5;
 }
 .hidden {
   display: none !important;
@@ -68,11 +75,27 @@ p {
 .error {
   color: crimson !important;
 }
+
+.terms {
+  text-align: justify;
+  padding: 0 5px;
+  margin-right: 25px;
+}
+.terms a {
+  text-decoration: none;
+}
+.terms li {
+  margin-bottom: 10px;
+}
+.terms ul {
+  list-style-type: none;
+}
+
 .text-title-sm {
   display: inline;
   margin: 0 0 5px 10px; 
   text-align: left; 
-  font-size: .9em;
+  font-size: 1.1em;
   float: left;
 }
 .right {
@@ -82,10 +105,10 @@ p {
 }
 .bottom-text {
   margin: 0;
-  font-size: .7em;
+  font-size: .9em;
 }
 .bottom-text span {
-  font-size: .9em;
+  font-size: 1em;
 }
 .text-btn {
   border-radius: 3px;
@@ -264,7 +287,7 @@ p {
   cursor: pointer;
 }
 .output-link {
-  font-size: 1em;
+  font-size: 1.3em;
   font-family: monospace;
   font-variant: all-petite-caps;
   color: #000;
@@ -444,7 +467,7 @@ p {
   display: inline;
   word-break: break-word;
   font-family: monospace;
-  font-size: .8em;
+  font-size: 1.2em;
   position: relative;
   top: -2px;
 }
@@ -460,7 +483,7 @@ p {
   margin: 0;
   display: inline;
   float: right;
-  font-size: .75em;
+  font-size: .8em;
   background: #fff;
   padding: 0 5px;
   margin-top: 2px;
